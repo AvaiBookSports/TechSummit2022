@@ -73,4 +73,34 @@ final class ZombieTest extends TestCase
             new Vector2(0, 0)
         );
     }
+
+    /**
+     * @test
+     * @testdox it should return it is not dead
+     */
+    public function it_should_return_it_is_not_dead(): void
+    {
+        $zombie = new Zombie(
+            new Name('First Zombie'),
+            new HealthPoints(1),
+            new Vector2(0, 0)
+        );
+
+        $this->assertFalse($zombie->isDead());
+    }
+
+    /**
+     * @test
+     * @testdox it should return it is dead
+     */
+    public function it_should_return_it_is_dead(): void
+    {
+        $zombie = new Zombie(
+            new Name('First Zombie'),
+            new HealthPoints(0),
+            new Vector2(0, 0)
+        );
+
+        $this->assertTrue($zombie->isDead());
+    }
 }
