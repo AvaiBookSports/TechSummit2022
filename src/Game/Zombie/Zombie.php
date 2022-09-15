@@ -29,4 +29,9 @@ final class Zombie
     {
         return $this->position;
     }
+
+    public function isDead(): bool
+    {
+        return 0 === $this->getHealhPoints()->getValue();
+    }
 }
