@@ -11,6 +11,8 @@ final class Vector2
         public readonly int $y,
     )
     {
-
+        if (0 > $this->x) {
+            throw new \RuntimeException('X axis cannot be lower than 0');
+        }
     }
 }

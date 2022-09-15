@@ -23,4 +23,15 @@ class Vector2Test extends TestCase
         $this->assertSame(1,  $position->x);
         $this->assertSame(7,  $position->y);
     }
+
+    /**
+     * @test
+     * @testdox don't allow negative X values
+     */
+    public function don_t_allow_negative_x_values(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('X axis cannot be lower than 0');
+        $position = new Vector2(-1, 0);
+    }
 }
