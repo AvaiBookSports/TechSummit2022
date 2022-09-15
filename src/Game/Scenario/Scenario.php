@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Game\Scenario;
 
+use App\Game\Zombie\Name;
 use App\Game\Zombie\Zombie;
 use App\Game\Survivor\Survivor;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,6 +13,14 @@ use RuntimeException;
 
 final class Scenario
 {
+    const MOVE_UP = 0;
+
+    const MOVE_RIGHT = 1;
+
+    const MOVE_DOWN = 2;
+
+    const MOVE_LEFT = 3;
+
     /** @var ArrayCollection<Survivor> $survivors */
     private ArrayCollection $survivors;
 
@@ -25,7 +34,8 @@ final class Scenario
      * @param int $size
      */
     public function __construct(
-        private int $size
+        private int $size,
+        private OutputInterface $output
     ) {
         if (3 > $this->size) {
             throw new RuntimeException('Scenario size too low');
@@ -71,7 +81,11 @@ final class Scenario
      */
     public function addSurvivor(Survivor $survivor): self
     {
-        $this->survivors->add($survivor);
+        if ($this->survivors->containsKey($survivor->getName())) {
+            throw new RuntimeException('Survivor already exists with this name');
+        }
+
+        $this->survivors->set($survivor->getName(), $survivor);
 
         return $this;
     }
@@ -82,7 +96,11 @@ final class Scenario
      */
     public function addZombie(Zombie $zombie): self
     {
-        $this->zombies->add($zombie);
+        if ($this->zombies->containsKey($zombie->getName()->getValue())) {
+            throw new RuntimeException('Zombie already exists with this name');
+        }
+
+        $this->zombies->set($zombie->getName()->getValue(), $zombie);
 
         return $this;
     }
@@ -96,5 +114,10 @@ final class Scenario
         $this->items->add($item);
 
         return $this;
+    }
+
+    public function moveZombie(Name $name, int $direction): void
+    {
+        $this->output->write('');
     }
 }
