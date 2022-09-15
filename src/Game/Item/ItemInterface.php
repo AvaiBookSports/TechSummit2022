@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Game\Item;
+namespace App\Game\Item;
 
 interface ItemInterface
 {
