@@ -89,4 +89,46 @@ class SurvivorTest extends TestCase
 
         $this->assertContains($baseballBat, $survivor->getBackpack());
     }
+
+    /**
+     * @test
+     * @testdox it should drop the left hand weapon
+     */
+    public function it_should_drop_the_left_hand_weapon(): void
+    {
+        $survivor = new Survivor(
+            'Álvaro',
+            new HealthPoints(3),
+            new Experiencie(5),
+            new Vector2(1, 5)
+        );
+
+        $baseballBat = BaseballBat::createInSurvivor();
+        $survivor->addWeaponToLeftHand($baseballBat);
+
+        $survivor->dropWeaponFromLeftHand();
+
+        $this->assertNull($survivor->getLeftHandWeapon());
+    }
+
+    /**
+     * @test
+     * @testdox it should drop the right hand weapon
+     */
+    public function it_should_drop_the_right_hand_weapon(): void
+    {
+        $survivor = new Survivor(
+            'Álvaro',
+            new HealthPoints(3),
+            new Experiencie(5),
+            new Vector2(1, 5)
+        );
+
+        $baseballBat = BaseballBat::createInSurvivor();
+        $survivor->addWeaponToRightHand($baseballBat);
+
+        $survivor->dropWeaponFromRightHand();
+
+        $this->assertNull($survivor->getRightHandWeapon());
+    }
 }

@@ -17,9 +17,10 @@ use App\Shared\Vector2;
  */
 final class Survivor
 {
-    private SurvivorWeaponInterface $leftHandWeapon;
+    private ?SurvivorWeaponInterface $leftHandWeapon = null;
 
-    private SurvivorWeaponInterface $rightHandWeapon;
+    private ?SurvivorWeaponInterface $rightHandWeapon = null;
+
     /**
      * @var array<SurvivorWeaponInterface>
      */
@@ -69,12 +70,12 @@ final class Survivor
         $this->backpack[] = $weapon;
     }
 
-    public function getLeftHandWeapon(): SurvivorWeaponInterface
+    public function getLeftHandWeapon(): ?SurvivorWeaponInterface
     {
         return $this->leftHandWeapon;
     }
 
-    public function getRightHandWeapon(): SurvivorWeaponInterface
+    public function getRightHandWeapon(): ?SurvivorWeaponInterface
     {
         return $this->rightHandWeapon;
     }
@@ -85,5 +86,15 @@ final class Survivor
     public function getBackpack(): array
     {
         return $this->backpack;
+    }
+
+    public function dropWeaponFromLeftHand(): void
+    {
+        $this->leftHandWeapon = null;
+    }
+
+    public function dropWeaponFromRightHand(): void
+    {
+        $this->rightHandWeapon = null;
     }
 }
