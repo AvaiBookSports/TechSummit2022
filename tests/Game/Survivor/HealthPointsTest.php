@@ -24,4 +24,16 @@ class HealthPointsTest extends TestCase
         $healthpoints = new HealthPoints(8);
         $this->assertSame(8, $healthpoints->value);
     }
+
+    /**
+     * @test
+     * @testdox it should not allow negative healthpoints
+     */
+    public function it_should_not_allow_negative_healthpoints(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Health cannot be lower than 0');
+        $healthpoints = new HealthPoints(-1);
+        $this->assertSame(-1, $healthpoints->value);
+    }
 }
