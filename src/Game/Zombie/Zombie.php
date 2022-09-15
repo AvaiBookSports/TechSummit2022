@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Game\Zombie;
 
-use App\Game\Zombie\HealthPoints;
-use App\Game\Zombie\Name;
 use App\Shared\Vector2;
 
 final class Zombie
@@ -19,16 +17,16 @@ final class Zombie
 
     public function getName(): Name
     {
-        return $this->name->getValue();
+        return $this->name;
     }
 
     public function getHealhPoints(): HealthPoints
     {
-        return $this->healthPoints->getValue();
+        return $this->healthPoints;
     }
 
     public function getPosition(): Vector2
     {
-        return $this->position->getValue();
+        return $this->position;
     }
 }
