@@ -7,6 +7,7 @@ namespace App\Game\Scenario;
 use App\Game\Zombie\Zombie;
 use App\Game\Survivor\Survivor;
 use Doctrine\Common\Collections\ArrayCollection;
+use Game\Item\SurvivorWeaponInterface;
 use RuntimeException;
 
 final class Scenario
@@ -17,7 +18,7 @@ final class Scenario
     /** @var ArrayCollection<Zombie> $zombies */
     private ArrayCollection $zombies;
 
-    /** @var ArrayCollection<Item> $items */
+    /** @var ArrayCollection<SurvivorWeaponInterface> $items */
     private ArrayCollection $items;
 
     /**
@@ -57,7 +58,7 @@ final class Scenario
     }
 
     /**
-     * @return ArrayCollection<Items>
+     * @return ArrayCollection<SurvivorWeaponInterface>
      */
     public function getItems(): ArrayCollection
     {
@@ -87,10 +88,10 @@ final class Scenario
     }
 
     /**
-     * @param Item $item
+     * @param SurvivorWeaponInterface $item
      * @return Scenario
      */
-    public function addItem(Item $item): self
+    public function addItem(SurvivorWeaponInterface $item): self
     {
         $this->items->add($item);
 
