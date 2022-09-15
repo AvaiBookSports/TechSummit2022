@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Game\Survivor;
 
+use App\Game\Item\SurvivorWeaponInterface;
 use App\Shared\Vector2;
 
 /**
@@ -16,6 +17,14 @@ use App\Shared\Vector2;
  */
 final class Survivor
 {
+    private SurvivorWeaponInterface $leftHandWeapon;
+
+    private SurvivorWeaponInterface $rightHandWeapon;
+    /**
+     * @var array<SurvivorWeaponInterface>
+     */
+    private array $backpack = [];
+
     public function __construct(
         private readonly string $name,
         private readonly HealthPoints $healthPoints,
@@ -43,5 +52,38 @@ final class Survivor
     public function getPosition(): Vector2
     {
         return $this->position;
+    }
+
+    public function addWeaponToLeftHand(SurvivorWeaponInterface $weapon)
+    {
+        $this->leftHandWeapon = $weapon;
+    }
+
+    public function addWeaponToRightHand(SurvivorWeaponInterface $weapon)
+    {
+        $this->rightHandWeapon = $weapon;
+    }
+
+    public function addWeaponToBackpack(SurvivorWeaponInterface $weapon)
+    {
+        $this->backpack[] = $weapon;
+    }
+
+    public function getLeftHandWeapon(): SurvivorWeaponInterface
+    {
+        return $this->leftHandWeapon;
+    }
+
+    public function getRightHandWeapon(): SurvivorWeaponInterface
+    {
+        return $this->rightHandWeapon;
+    }
+
+    /**
+     * @return array<SurvivorWeaponInterface>
+     */
+    public function getBackpack(): array
+    {
+        return $this->backpack;
     }
 }
