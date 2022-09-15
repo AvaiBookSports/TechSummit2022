@@ -22,4 +22,18 @@ class AbstractPlaceableWeaponTest extends TestCase
 
         $weapon->use();
     }
+
+    /**
+     * @test
+     * @testdox it cannot use a wasted weapon
+     */
+    public function it_cannot_use_a_wasted_weapon(): void
+    {
+        $weapon = BaseballBat::createInSurvivor();
+        $this->expectException(WeaponIsNotUsableException::class);
+
+        $weapon->use();
+        $weapon->use();
+
+    }
 }
