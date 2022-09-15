@@ -131,4 +131,44 @@ class SurvivorTest extends TestCase
 
         $this->assertNull($survivor->getRightHandWeapon());
     }
+
+    /**
+     * @test
+     * @testdox it should get the weapon from the backpack
+     */
+    public function it_should_get_the_weapon_from_the_backpack(): void
+    {
+        $survivor = new Survivor(
+            'Álvaro',
+            new HealthPoints(3),
+            new Experiencie(5),
+            new Vector2(1, 5)
+        );
+
+        $baseballBat = BaseballBat::createInSurvivor();
+        $survivor->addWeaponToBackpack($baseballBat);
+
+        $this->assertSame($baseballBat, $survivor->getWeaponFromBackpack(BaseballBat::getName()));
+    }
+
+    /**
+     * @test
+     * @testdox it should drop the weapon from the backpack
+     */
+    public function it_should_drop_the_weapon_from_the_backpack(): void
+    {
+        $survivor = new Survivor(
+            'Álvaro',
+            new HealthPoints(3),
+            new Experiencie(5),
+            new Vector2(1, 5)
+        );
+
+        $baseballBat = BaseballBat::createInSurvivor();
+        $survivor->addWeaponToBackpack($baseballBat);
+
+        $survivor->dropWeaponFromBackpack(BaseballBat::getName());
+
+        $this->assertNull($survivor->getWeaponFromBackpack(BaseballBat::getName()));
+    }
 }
