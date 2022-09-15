@@ -34,4 +34,15 @@ class Vector2Test extends TestCase
         $this->expectExceptionMessage('X axis cannot be lower than 0');
         $position = new Vector2(-1, 0);
     }
+
+    /**
+     * @test
+     * @testdox don't allow negative Y values
+     */
+    public function don_t_allow_negative_y_values(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Y axis cannot be lower than 0');
+        $position = new Vector2(0, -1);
+    }
 }
