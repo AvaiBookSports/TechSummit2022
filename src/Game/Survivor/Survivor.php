@@ -7,14 +7,6 @@ namespace App\Game\Survivor;
 use App\Game\Item\SurvivorWeaponInterface;
 use App\Shared\Vector2;
 
-/**
- * tienen un nombre único
-* tienen un valor inicial de vida
-* tienen un valor inicial de experiencia
-* pueden llevar con ellos hasta 5 elementos de equipación, uno en cada mano y el resto en la
-* mochila
-* se encuentran siempre en alguna coordenada del mapa
- */
 final class Survivor
 {
     private ?SurvivorWeaponInterface $leftHandWeapon = null;
